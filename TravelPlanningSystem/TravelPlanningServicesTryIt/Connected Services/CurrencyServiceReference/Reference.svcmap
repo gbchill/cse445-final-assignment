@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="75a2b7d2-f3f7-4b16-a075-6ba627c946f5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:52780/CurrencyConverter.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CurrencyConverter.xsd" MetadataType="Schema" ID="fb447435-81f4-479e-ac51-af2cceb8abf6" SourceId="1" SourceUrl="http://localhost:52780/CurrencyConverter.svc?xsd=xsd2" />
+    <MetadataFile FileName="CurrencyConverter.disco" MetadataType="Disco" ID="fd85c995-034e-4d3f-a38f-e6a4b12d25c0" SourceId="1" SourceUrl="http://localhost:52780/CurrencyConverter.svc?disco" />
+    <MetadataFile FileName="CurrencyConverter1.xsd" MetadataType="Schema" ID="9ac55ccd-b895-4adb-bee1-a065649b0c3d" SourceId="1" SourceUrl="http://localhost:52780/CurrencyConverter.svc?xsd=xsd0" />
+    <MetadataFile FileName="CurrencyConverter2.xsd" MetadataType="Schema" ID="0d7e3a43-080f-41c5-b5a6-d99023ef21fb" SourceId="1" SourceUrl="http://localhost:52780/CurrencyConverter.svc?xsd=xsd1" />
+    <MetadataFile FileName="CurrencyConverter.wsdl" MetadataType="Wsdl" ID="249c4e91-149d-4aa3-956b-58e945a67a73" SourceId="1" SourceUrl="http://localhost:52780/CurrencyConverter.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

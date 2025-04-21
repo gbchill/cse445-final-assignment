@@ -1,0 +1,36 @@
+# Visual Studio workspace and build artifacts
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build folders
+[Bb]in/
+[Oo]bj/
+
+# NuGet packages folder (if using Package Restore)
+**/packages/*
+
+# Entity Framework Migrations
+[Mm]igrations/
+
+# Rider IDE
+.idea/
+
+# VS Code settings
+.vscode/
+
+# Windows thumbnail cache and system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS system files
+.DS_Store
+
+# Logs
+*.log
+
+# Temporary files
+*~

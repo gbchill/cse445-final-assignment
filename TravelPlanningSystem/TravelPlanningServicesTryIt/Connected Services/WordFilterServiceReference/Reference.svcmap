@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="743ca938-4268-42c4-b037-be6f1770f9bd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:52780/WordFilter.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WordFilter.xsd" MetadataType="Schema" ID="6b70ce76-de1a-4630-a5a1-e11b29f2692c" SourceId="1" SourceUrl="http://localhost:52780/WordFilter.svc?xsd=xsd0" />
+    <MetadataFile FileName="WordFilter.wsdl" MetadataType="Wsdl" ID="6e52a469-951d-41bd-90de-3c05eee3f4cb" SourceId="1" SourceUrl="http://localhost:52780/WordFilter.svc?wsdl" />
+    <MetadataFile FileName="WordFilter1.xsd" MetadataType="Schema" ID="92165056-c48c-4e55-8ad8-6271a376f5d5" SourceId="1" SourceUrl="http://localhost:52780/WordFilter.svc?xsd=xsd1" />
+    <MetadataFile FileName="WordFilter.disco" MetadataType="Disco" ID="855f0bb5-a99f-4c1b-a755-ce04438b8a0e" SourceId="1" SourceUrl="http://localhost:52780/WordFilter.svc?disco" />
+    <MetadataFile FileName="WordFilter2.xsd" MetadataType="Schema" ID="7e9b2cc0-27bb-447f-a3d1-a594c8a3b60d" SourceId="1" SourceUrl="http://localhost:52780/WordFilter.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
