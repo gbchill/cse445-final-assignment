@@ -1,4 +1,6 @@
-﻿using System.ServiceModel;
+﻿using System;
+using System.ServiceModel;
+using System.Runtime.Serialization;
 
 namespace WeatherServices
 {
@@ -13,5 +15,27 @@ namespace WeatherServices
 
         [OperationContract]
         double CelsiusToFahrenheit(double celsius);
+
+        [OperationContract]
+        TemperatureData GetTemperatureByZipCode(string zipCode);
+    }
+
+    [DataContract]
+    public class TemperatureData
+    {
+        [DataMember]
+        public string ZipCode { get; set; }
+
+        [DataMember]
+        public double TemperatureFahrenheit { get; set; }
+
+        [DataMember]
+        public double TemperatureCelsius { get; set; }
+
+        [DataMember]
+        public string Location { get; set; }
+
+        [DataMember]
+        public DateTime RetrievedAt { get; set; }
     }
 }

@@ -141,31 +141,13 @@ namespace WeatherTravelPlanning
         protected global::System.Web.UI.WebControls.View vwConverter;
 
         /// <summary>
-        /// txtTemperature control.
+        /// txtConverterZipCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTemperature;
-
-        /// <summary>
-        /// ddlFromUnit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFromUnit;
-
-        /// <summary>
-        /// ddlToUnit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlToUnit;
+        protected global::System.Web.UI.WebControls.TextBox txtConverterZipCode;
 
         /// <summary>
         /// btnConvert control.
@@ -186,6 +168,15 @@ namespace WeatherTravelPlanning
         protected global::System.Web.UI.WebControls.Label lblConverterResult;
 
         /// <summary>
+        /// btnToggleTemp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnToggleTemp;
+
+        /// <summary>
         /// vwRainy control.
         /// </summary>
         /// <remarks>
@@ -195,22 +186,22 @@ namespace WeatherTravelPlanning
         protected global::System.Web.UI.WebControls.View vwRainy;
 
         /// <summary>
-        /// txtLocation control.
+        /// txtRainLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLocation;
+        protected global::System.Web.UI.WebControls.TextBox txtRainLocation;
 
         /// <summary>
-        /// txtDate control.
+        /// txtRainDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDate;
+        protected global::System.Web.UI.WebControls.TextBox txtRainDate;
 
         /// <summary>
         /// btnGetAdvice control.

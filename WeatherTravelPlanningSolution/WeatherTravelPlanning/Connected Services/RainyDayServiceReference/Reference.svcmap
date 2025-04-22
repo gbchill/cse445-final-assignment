@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="deb8e1b0-8883-4fbc-8ec7-51018c61a561" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://localhost:44391/RainyDayAdvisor.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="RainyDayAdvisor.xsd" MetadataType="Schema" ID="03ddad24-737e-4881-80c8-c033a7cae81e" SourceId="1" SourceUrl="https://localhost:44391/RainyDayAdvisor.svc?xsd=xsd1" />
+    <MetadataFile FileName="RainyDayAdvisor1.xsd" MetadataType="Schema" ID="55693c31-66f9-4b15-afeb-fa5fcf7c4f7a" SourceId="1" SourceUrl="https://localhost:44391/RainyDayAdvisor.svc?xsd=xsd2" />
+    <MetadataFile FileName="RainyDayAdvisor.wsdl" MetadataType="Wsdl" ID="ca0860ad-5e1b-4baf-8847-c0e077ac3c98" SourceId="1" SourceUrl="https://localhost:44391/RainyDayAdvisor.svc?wsdl" />
+    <MetadataFile FileName="RainyDayAdvisor.disco" MetadataType="Disco" ID="71197ca3-190d-44cd-af76-0b3eb1e19f54" SourceId="1" SourceUrl="https://localhost:44391/RainyDayAdvisor.svc?disco" />
+    <MetadataFile FileName="RainyDayAdvisor2.xsd" MetadataType="Schema" ID="e57cdcfd-60a4-49ef-b8e4-282653017f6b" SourceId="1" SourceUrl="https://localhost:44391/RainyDayAdvisor.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

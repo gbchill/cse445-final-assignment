@@ -70,10 +70,41 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\RainyDayServiceReference\RainyDayAdvisor.wsdl" />
+    <None Include="Connected Services\RainyDayServiceReference\RainyDayAdvisor.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\RainyDayServiceReference\RainyDayAdvisor1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\RainyDayServiceReference\RainyDayAdvisor2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TemperatureServiceReference\TemperatureConverter.wsdl" />
+    <None Include="Connected Services\TemperatureServiceReference\TemperatureConverter.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TemperatureServiceReference\TemperatureConverter1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\WeatherServiceReference\WeatherForecast.disco" />
     <None Include="Connected Services\WeatherServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\WeatherServiceReference\configuration.svcinfo" />
     <None Include="Connected Services\WeatherServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\RainyDayServiceReference\RainyDayAdvisor.disco" />
+    <None Include="Connected Services\RainyDayServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\RainyDayServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\RainyDayServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\TemperatureServiceReference\TemperatureConverter.disco" />
+    <None Include="Connected Services\TemperatureServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\TemperatureServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\TemperatureServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -87,6 +118,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\RainyDayServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\TemperatureServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\WeatherServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -105,7 +146,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -131,6 +171,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\RainyDayServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\TemperatureServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\WeatherServiceReference\" />
   </ItemGroup>
   <PropertyGroup>

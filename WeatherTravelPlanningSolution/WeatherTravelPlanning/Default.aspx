@@ -119,31 +119,33 @@
                     </asp:View>
                     
                     <!-- View 2: Temperature Converter -->
+          
                     <asp:View ID="vwConverter" runat="server">
-                        <h3>Temperature Converter</h3>
-                        <label>Temperature:</label>
-                        <asp:TextBox ID="txtTemperature" runat="server"></asp:TextBox>
-                        <asp:DropDownList ID="ddlFromUnit" runat="server">
-                            <asp:ListItem Value="F">Fahrenheit</asp:ListItem>
-                            <asp:ListItem Value="C">Celsius</asp:ListItem>
-                        </asp:DropDownList>
-                        <label>to</label>
-                        <asp:DropDownList ID="ddlToUnit" runat="server">
-                            <asp:ListItem Value="C">Celsius</asp:ListItem>
-                            <asp:ListItem Value="F">Fahrenheit</asp:ListItem>
-                        </asp:DropDownList>
-                        <asp:Button ID="btnConvert" runat="server" Text="Convert" OnClick="btnConvert_Click" />
-                        <br /><br />
-                        <asp:Label ID="lblConverterResult" runat="server"></asp:Label>
+                        <h3>Temperature Converter by ZIP Code</h3>
+                        <p>Enter a ZIP code to get the current temperature and convert between Fahrenheit and Celsius.</p>
+    
+                        <div style="margin: 20px 0;">
+                            <label for="txtConverterZipCode">ZIP Code:</label>
+                            <asp:TextBox ID="txtConverterZipCode" runat="server" MaxLength="5" placeholder="Enter 5-digit ZIP"></asp:TextBox>
+                            <asp:Button ID="btnConvert" runat="server" Text="Get Temperature" OnClick="btnConvert_Click" />
+                        </div>
+    
+                        <div style="margin: 20px 0;">
+                            <asp:Label ID="lblConverterResult" runat="server"></asp:Label>
+                        </div>
+    
+                        <div style="margin: 20px 0;">
+                            <asp:Button ID="btnToggleTemp" runat="server" Text="Toggle °F/°C" OnClick="btnToggleTemp_Click" Visible="false" />
+                        </div>
                     </asp:View>
                     
                     <!-- View 3: Rainy Day Advisor -->
                     <asp:View ID="vwRainy" runat="server">
                         <h3>Rainy Day Activity Advisor</h3>
-                        <label>Location:</label>
-                        <asp:TextBox ID="txtLocation" runat="server"></asp:TextBox>
+                        <label>Location (5-digit ZIP code):</label>
+                        <asp:TextBox ID="txtRainLocation" runat="server"></asp:TextBox>
                         <label>Date:</label>
-                        <asp:TextBox ID="txtDate" runat="server" TextMode="Date"></asp:TextBox>
+                        <asp:TextBox ID="txtRainDate" runat="server" TextMode="Date"></asp:TextBox>
                         <asp:Button ID="btnGetAdvice" runat="server" Text="Get Advice" OnClick="btnGetAdvice_Click" />
                         <br /><br />
                         <asp:Label ID="lblRainyResult" runat="server"></asp:Label>

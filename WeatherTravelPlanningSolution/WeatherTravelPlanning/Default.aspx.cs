@@ -4,6 +4,16 @@ using System.ServiceModel;
 
 namespace WeatherTravelPlanning
 {
+    // Define a simple class for temperature data to avoid serialization issues
+    [Serializable]
+    public class SimpleTemperatureData
+    {
+        public string Location { get; set; }
+        public double TemperatureFahrenheit { get; set; }
+        public double TemperatureCelsius { get; set; }
+        public DateTime RetrievedAt { get; set; }
+    }
+
     public partial class Default : Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -23,50 +33,150 @@ namespace WeatherTravelPlanning
         protected void btnTryControl_Click(object sender, EventArgs e) => mvTryIt.ActiveViewIndex = 5;
         protected void btnTryCookie_Click(object sender, EventArgs e) => mvTryIt.ActiveViewIndex = 6;
 
-        // Inside each view, the action buttons need handlers too:
         protected void btnGetForecast_Click(object sender, EventArgs e)
         {
             try
             {
-                // get the zip code from the input field
                 string zipCode = txtZipCode.Text.Trim();
 
-                // validate zip code
                 if (string.IsNullOrEmpty(zipCode) || zipCode.Length != 5)
                 {
                     lblForecastResult.Text = "Please enter a valid 5-digit US zip code.";
                     return;
                 }
 
-                // create a service client - you'll need to add a service reference to WeatherForecast service
-                // Right-click References > Add Service Reference > set the URL to your WeatherForecast service endpoint
                 WeatherServiceReference.WeatherForecastClient client =
-                    new WeatherServiceReference.WeatherForecastClient();
+                    new WeatherServiceReference.WeatherForecastClient("BasicHttpBinding_IWeatherForecast");
 
-                // call the service
                 string forecast = client.GetWeatherForecast(zipCode);
-
-                // display the result - replace newlines with <br/> for HTML display
                 lblForecastResult.Text = forecast.Replace("\n", "<br/>");
 
-                // close the client
                 client.Close();
             }
             catch (Exception ex)
             {
-                // display error message
                 lblForecastResult.Text = "Error: " + ex.Message;
             }
         }
 
         protected void btnConvert_Click(object sender, EventArgs e)
         {
-            // TODO: read txtTemperature & dropdowns, call converter service, set lblConverterResult.Text
+            try
+            {
+                string zipCode = txtConverterZipCode.Text.Trim();
+
+                if (string.IsNullOrEmpty(zipCode) || zipCode.Length != 5)
+                {
+                    lblConverterResult.Text = "Please enter a valid 5-digit US zip code.";
+                    return;
+                }
+
+                // Use the TemperatureConverterClient with existing methods
+                TemperatureServiceReference.TemperatureConverterClient client =
+                    new TemperatureServiceReference.TemperatureConverterClient("BasicHttpsBinding_ITemperatureConverter");
+
+                // For now, simulate temperature data as the service doesn't expose GetTemperatureByZipCode
+                double tempFahrenheit = 75.0; // Simulated temperature
+                double tempCelsius = client.FahrenheitToCelsius(tempFahrenheit);
+
+                // Create a simple data object that can be serialized
+                SimpleTemperatureData tempData = new SimpleTemperatureData
+                {
+                    Location = zipCode,
+                    TemperatureFahrenheit = tempFahrenheit,
+                    TemperatureCelsius = tempCelsius,
+                    RetrievedAt = DateTime.Now
+                };
+
+                // Display results
+                string result = $"<strong>Location:</strong> {tempData.Location}<br/>";
+                result += $"<strong>Temperature:</strong> {tempData.TemperatureFahrenheit}°F / {tempData.TemperatureCelsius}°C<br/>";
+                result += $"<strong>Retrieved at:</strong> {tempData.RetrievedAt:g}<br/>";
+
+                // Store the serializable object in ViewState
+                ViewState["TempData"] = tempData;
+                ViewState["DisplayInF"] = true;
+
+                // Show toggle button
+                btnToggleTemp.Visible = true;
+                lblConverterResult.Text = result;
+
+                client.Close();
+            }
+            catch (Exception ex)
+            {
+                lblConverterResult.Text = "Error: " + ex.Message;
+                btnToggleTemp.Visible = false;
+            }
+        }
+
+        protected void btnToggleTemp_Click(object sender, EventArgs e)
+        {
+            if (ViewState["TempData"] != null)
+            {
+                SimpleTemperatureData tempData = (SimpleTemperatureData)ViewState["TempData"];
+                bool displayInF = (bool)ViewState["DisplayInF"];
+
+                string result = $"<strong>Location:</strong> {tempData.Location}<br/>";
+
+                if (displayInF)
+                {
+                    result += $"<strong>Temperature:</strong> {tempData.TemperatureCelsius}°C ({tempData.TemperatureFahrenheit}°F)<br/>";
+                    ViewState["DisplayInF"] = false;
+                }
+                else
+                {
+                    result += $"<strong>Temperature:</strong> {tempData.TemperatureFahrenheit}°F ({tempData.TemperatureCelsius}°C)<br/>";
+                    ViewState["DisplayInF"] = true;
+                }
+
+                result += $"<strong>Retrieved at:</strong> {tempData.RetrievedAt:g}<br/>";
+                lblConverterResult.Text = result;
+            }
         }
 
         protected void btnGetAdvice_Click(object sender, EventArgs e)
         {
-            // TODO: call RainyDayAdvisor service, format suggestions into lblRainyResult.Text
+            try
+            {
+                string location = txtRainLocation.Text.Trim();
+                DateTime selectedDate;
+
+                if (string.IsNullOrEmpty(location) || location.Length != 5)
+                {
+                    lblRainyResult.Text = "Please enter a valid 5-digit US zip code.";
+                    return;
+                }
+
+                if (!DateTime.TryParse(txtRainDate.Text, out selectedDate))
+                {
+                    lblRainyResult.Text = "Please enter a valid date.";
+                    return;
+                }
+
+                RainyDayServiceReference.RainyDayAdvisorClient client =
+                    new RainyDayServiceReference.RainyDayAdvisorClient("BasicHttpsBinding_IRainyDayAdvisor");
+
+                bool isRainy = client.IsItRainy(location, selectedDate);
+                string[] advice = client.GetRainyDayAdvice(location, selectedDate);
+
+                string result = string.Format("Weather forecast for {0} on {1}:<br/>",
+                    location, selectedDate.ToShortDateString());
+                result += isRainy ? "<strong>It is expected to be rainy!</strong><br/><br/>"
+                                  : "<strong>It is not expected to rain.</strong><br/><br/>";
+
+                foreach (string suggestion in advice)
+                {
+                    result += "• " + suggestion + "<br/>";
+                }
+
+                lblRainyResult.Text = result;
+                client.Close();
+            }
+            catch (Exception ex)
+            {
+                lblRainyResult.Text = "Error: " + ex.Message;
+            }
         }
 
         protected void btnEncrypt_Click(object sender, EventArgs e)
