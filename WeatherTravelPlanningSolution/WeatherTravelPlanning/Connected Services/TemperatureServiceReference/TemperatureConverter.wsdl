@@ -29,6 +29,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="https://localhost:44391/TemperatureConverter.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="https://localhost:44391/TemperatureConverter.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="https://localhost:44391/TemperatureConverter.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WeatherServices" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ITemperatureConverter_ConvertTemperature_InputMessage">
@@ -49,6 +50,12 @@
   <wsdl:message name="ITemperatureConverter_CelsiusToFahrenheit_OutputMessage">
     <wsdl:part name="parameters" element="tns:CelsiusToFahrenheitResponse" />
   </wsdl:message>
+  <wsdl:message name="ITemperatureConverter_GetTemperatureByZipCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTemperatureByZipCode" />
+  </wsdl:message>
+  <wsdl:message name="ITemperatureConverter_GetTemperatureByZipCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTemperatureByZipCodeResponse" />
+  </wsdl:message>
   <wsdl:portType name="ITemperatureConverter">
     <wsdl:operation name="ConvertTemperature">
       <wsdl:input wsaw:Action="http://tempuri.org/ITemperatureConverter/ConvertTemperature" message="tns:ITemperatureConverter_ConvertTemperature_InputMessage" />
@@ -61,6 +68,10 @@
     <wsdl:operation name="CelsiusToFahrenheit">
       <wsdl:input wsaw:Action="http://tempuri.org/ITemperatureConverter/CelsiusToFahrenheit" message="tns:ITemperatureConverter_CelsiusToFahrenheit_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITemperatureConverter/CelsiusToFahrenheitResponse" message="tns:ITemperatureConverter_CelsiusToFahrenheit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemperatureByZipCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITemperatureConverter/GetTemperatureByZipCode" message="tns:ITemperatureConverter_GetTemperatureByZipCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITemperatureConverter/GetTemperatureByZipCodeResponse" message="tns:ITemperatureConverter_GetTemperatureByZipCode_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ITemperatureConverter" type="tns:ITemperatureConverter">
@@ -92,6 +103,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetTemperatureByZipCode">
+      <soap:operation soapAction="http://tempuri.org/ITemperatureConverter/GetTemperatureByZipCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BasicHttpsBinding_ITemperatureConverter" type="tns:ITemperatureConverter">
     <wsp:PolicyReference URI="#BasicHttpsBinding_ITemperatureConverter_policy" />
@@ -116,6 +136,15 @@
     </wsdl:operation>
     <wsdl:operation name="CelsiusToFahrenheit">
       <soap:operation soapAction="http://tempuri.org/ITemperatureConverter/CelsiusToFahrenheit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemperatureByZipCode">
+      <soap:operation soapAction="http://tempuri.org/ITemperatureConverter/GetTemperatureByZipCode" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

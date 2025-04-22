@@ -5,7 +5,7 @@ namespace WeatherTravelPlanning.UserControls
 {
     public partial class WeatherDisplay : System.Web.UI.UserControl
     {
-        // Properties to set the weather data
+
         public string Location { get; set; }
         public double CurrentTemperature { get; set; }
         public double HighTemperature { get; set; }
@@ -19,22 +19,32 @@ namespace WeatherTravelPlanning.UserControls
         {
             if (!IsPostBack)
             {
-                UpdateDisplay();
+          
+                SetWeatherData(
+                    location: "Phoenix, AZ",
+                    currentTemp: 75.5,
+                    highTemp: 82.0,
+                    lowTemp: 68.3,
+                    conditions: "Partly Cloudy",
+                    rainChance: 10.0,
+                    windSpeed: 5.5,
+                    humidity: 45.0
+                );
             }
         }
 
         public void UpdateDisplay()
         {
             lblLocation.Text = string.IsNullOrEmpty(Location) ? "Weather" : $"Weather for {Location}";
-            lblTemperature.Text = $"{CurrentTemperature}°F";
+            lblTemperature.Text = $"{CurrentTemperature:0.0}°F";
             lblConditions.Text = Conditions;
-            lblHighLow.Text = $"{HighTemperature}°/{LowTemperature}°";
-            lblRainChance.Text = $"{RainChance}%";
-            lblWind.Text = $"{WindSpeed} mph";
-            lblHumidity.Text = $"{Humidity}%";
+            lblHighLow.Text = $"{HighTemperature:0.0}°/{LowTemperature:0.0}°";
+            lblRainChance.Text = $"{RainChance:0.0}%";
+            lblWind.Text = $"{WindSpeed:0.0} mph";
+            lblHumidity.Text = $"{Humidity:0.0}%";
         }
 
-        // Method to update the weather data
+        //update the weather data
         public void SetWeatherData(string location, double currentTemp, double highTemp,
                                   double lowTemp, string conditions, double rainChance,
                                   double windSpeed, double humidity)
@@ -47,7 +57,6 @@ namespace WeatherTravelPlanning.UserControls
             RainChance = rainChance;
             WindSpeed = windSpeed;
             Humidity = humidity;
-
             UpdateDisplay();
         }
     }

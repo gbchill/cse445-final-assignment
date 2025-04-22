@@ -17,7 +17,7 @@ namespace WeatherServices
 
             List<string> advice = new List<string>();
 
-            // Check if it's rainy
+            //check if it's rainy
             bool isRainy = IsItRainy(location, date);
 
             if (isRainy)
@@ -44,7 +44,7 @@ namespace WeatherServices
         {
             List<string> activities = new List<string>();
 
-            // Generic activities available in most locations
+            //generic activities
             activities.Add("Visit a local museum or art gallery");
             activities.Add("Go to a shopping mall");
             activities.Add("Watch a movie at the cinema");
@@ -56,12 +56,12 @@ namespace WeatherServices
             activities.Add("Try indoor rock climbing");
             activities.Add("Visit a spa or wellness center");
 
-            // Get city and state from location
+            //city and state from location
             var coordinates = GetCoordinatesFromZipCode(location);
 
             if (coordinates != null)
             {
-                // Add some location-specific suggestions based on actual city
+                //location specific suggestions based on actual city
                 if (coordinates.City.ToLower().Contains("phoenix") || coordinates.State.ToLower() == "az")
                 {
                     activities.Add("Visit the Musical Instrument Museum");
@@ -101,13 +101,13 @@ namespace WeatherServices
                     throw new Exception("Unable to determine location from zip code.");
                 }
 
-                // Check if the requested date is within the forecast period (next 7 days)
+                //next 7 day
                 if (date.Date > DateTime.Now.Date.AddDays(7))
                 {
                     throw new Exception("Weather forecast is only available for the next 7 days.");
                 }
 
-                // Get the weather forecast
+          
                 var (isRaining, probability) = CheckRainInForecast(coordinates.Latitude, coordinates.Longitude, date);
                 return isRaining;
             }
@@ -161,7 +161,7 @@ namespace WeatherServices
                 dynamic forecastData = serializer.Deserialize<dynamic>(forecastResponse);
                 var periods = forecastData["properties"]["periods"];
 
-                // Look for the forecast period that matches the requested date
+                //remoced maybe addi n future
                 foreach (var period in periods)
                 {
                     DateTime periodStartTime = DateTime.Parse(period["startTime"].ToString());
@@ -194,7 +194,7 @@ namespace WeatherServices
                     }
                 }
 
-                // If no matching period found, throw exception
+
                 throw new Exception("No weather forecast available for the specified date.");
             }
             catch (Exception ex)
@@ -207,7 +207,7 @@ namespace WeatherServices
         {
             try
             {
-                // Use Zippopotam.us API for free ZIP code lookup
+                //use Zippopotam.us weather pai
                 string apiUrl = $"https://api.zippopotam.us/us/{zipCode}";
 
                 using (WebClient client = new WebClient())
@@ -237,7 +237,7 @@ namespace WeatherServices
             }
             catch (Exception ex)
             {
-                // If Zippopotam fails, try OpenDataSoft API as backup
+                //OpenDataSoft API as backup if fials
                 try
                 {
                     string odApiUrl = $"https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q={zipCode}&facet=state&facet=timezone&facet=dst";

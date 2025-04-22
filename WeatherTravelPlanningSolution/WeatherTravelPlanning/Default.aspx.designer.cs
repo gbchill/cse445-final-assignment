@@ -195,15 +195,6 @@ namespace WeatherTravelPlanning
         protected global::System.Web.UI.WebControls.TextBox txtRainLocation;
 
         /// <summary>
-        /// txtRainDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRainDate;
-
-        /// <summary>
         /// btnGetAdvice control.
         /// </summary>
         /// <remarks>
@@ -283,6 +274,24 @@ namespace WeatherTravelPlanning
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View vwUserControl;
+
+        /// <summary>
+        /// btnDemoWeatherControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDemoWeatherControl;
+
+        /// <summary>
+        /// weatherDisplayDemo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WeatherTravelPlanning.UserControls.WeatherDisplay weatherDisplayDemo;
 
         /// <summary>
         /// vwCookie control.

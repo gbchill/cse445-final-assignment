@@ -14,20 +14,22 @@ namespace WeatherServices
             {
                 throw new ArgumentException("Both fromUnit and toUnit must be specified.");
             }
-            // Convert to uppercase for case-insensitive comparison
+
             fromUnit = fromUnit.ToUpper();
             toUnit = toUnit.ToUpper();
-            // If units are the same, return original temperature
+
+
             if (fromUnit == toUnit)
             {
                 return temperature;
             }
-            // Convert Fahrenheit to Celsius
+
+            // Convert f to c
             if (fromUnit == "F" && toUnit == "C")
             {
                 return FahrenheitToCelsius(temperature);
             }
-            // Convert Celsius to Fahrenheit
+            //covner c to f
             else if (fromUnit == "C" && toUnit == "F")
             {
                 return CelsiusToFahrenheit(temperature);
@@ -40,13 +42,13 @@ namespace WeatherServices
 
         public double FahrenheitToCelsius(double fahrenheit)
         {
-            // Formula: (°F - 32) × 5/9 = °C
+            //F - 32) × 5/9 = °C
             return Math.Round((fahrenheit - 32) * 5 / 9, 2);
         }
 
         public double CelsiusToFahrenheit(double celsius)
         {
-            // Formula: (°C × 9/5) + 32 = °F
+            //C × 9/5) + 32 = °F
             return Math.Round((celsius * 9 / 5) + 32, 2);
         }
 
@@ -60,17 +62,17 @@ namespace WeatherServices
                     throw new ArgumentException("Please provide a valid 5-digit US zip code.");
                 }
 
-                // First convert zip code to coordinates using free API
+                // First, get coordinates from zip code
                 var coordinates = GetCoordinatesFromZipCode(zipCode);
                 if (coordinates == null)
                 {
                     throw new Exception("Could not determine location for the provided zip code.");
                 }
 
-                // Get the current temperature data
+                // Then get weather data
                 var weatherData = GetCurrentWeatherFromNWS(coordinates.Latitude, coordinates.Longitude);
 
-                // Extract temperature from weather data
+                // Extract temperature
                 double tempFahrenheit = ExtractTemperature(weatherData);
                 double tempCelsius = FahrenheitToCelsius(tempFahrenheit);
 
@@ -93,7 +95,7 @@ namespace WeatherServices
         {
             try
             {
-                // Use Zippopotam.us API for free ZIP code lookup
+                // Zippopotam.us
                 string apiUrl = $"https://api.zippopotam.us/us/{zipCode}";
 
                 using (WebClient client = new WebClient())
@@ -123,6 +125,39 @@ namespace WeatherServices
             }
             catch
             {
+                //backup API 
+                try
+                {
+                    string odApiUrl = $"https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q={zipCode}&facet=state&facet=timezone&facet=dst";
+
+                    using (WebClient client = new WebClient())
+                    {
+                        client.Headers.Add("User-Agent", "TemperatureConverter/1.0");
+                        client.Headers.Add("Accept", "application/json");
+
+                        string response = client.DownloadString(odApiUrl);
+
+                        JavaScriptSerializer serializer = new JavaScriptSerializer();
+                        dynamic odData = serializer.Deserialize<dynamic>(response);
+
+                        if (odData != null && odData["records"] != null && odData["records"].Length > 0)
+                        {
+                            var record = odData["records"][0]["fields"];
+                            return new Coordinates
+                            {
+                                Latitude = Convert.ToDouble(record["latitude"]),
+                                Longitude = Convert.ToDouble(record["longitude"]),
+                                City = record["city"].ToString(),
+                                State = record["state"].ToString()
+                            };
+                        }
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
+
                 return null;
             }
         }
@@ -131,7 +166,7 @@ namespace WeatherServices
         {
             try
             {
-                // Get metadata for the location
+               
                 string pointsUrl = $"https://api.weather.gov/points/{latitude},{longitude}";
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(pointsUrl);

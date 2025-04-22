@@ -9,7 +9,118 @@
 //------------------------------------------------------------------------------
 
 namespace WeatherTravelPlanning.TemperatureServiceReference {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TemperatureData", Namespace="http://schemas.datacontract.org/2004/07/WeatherServices")]
+    [System.SerializableAttribute()]
+    public partial class TemperatureData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LocationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime RetrievedAtField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double TemperatureCelsiusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double TemperatureFahrenheitField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZipCodeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Location {
+            get {
+                return this.LocationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LocationField, value) != true)) {
+                    this.LocationField = value;
+                    this.RaisePropertyChanged("Location");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime RetrievedAt {
+            get {
+                return this.RetrievedAtField;
+            }
+            set {
+                if ((this.RetrievedAtField.Equals(value) != true)) {
+                    this.RetrievedAtField = value;
+                    this.RaisePropertyChanged("RetrievedAt");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double TemperatureCelsius {
+            get {
+                return this.TemperatureCelsiusField;
+            }
+            set {
+                if ((this.TemperatureCelsiusField.Equals(value) != true)) {
+                    this.TemperatureCelsiusField = value;
+                    this.RaisePropertyChanged("TemperatureCelsius");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double TemperatureFahrenheit {
+            get {
+                return this.TemperatureFahrenheitField;
+            }
+            set {
+                if ((this.TemperatureFahrenheitField.Equals(value) != true)) {
+                    this.TemperatureFahrenheitField = value;
+                    this.RaisePropertyChanged("TemperatureFahrenheit");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZipCode {
+            get {
+                return this.ZipCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZipCodeField, value) != true)) {
+                    this.ZipCodeField = value;
+                    this.RaisePropertyChanged("ZipCode");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TemperatureServiceReference.ITemperatureConverter")]
@@ -32,6 +143,12 @@ namespace WeatherTravelPlanning.TemperatureServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemperatureConverter/CelsiusToFahrenheit", ReplyAction="http://tempuri.org/ITemperatureConverter/CelsiusToFahrenheitResponse")]
         System.Threading.Tasks.Task<double> CelsiusToFahrenheitAsync(double celsius);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemperatureConverter/GetTemperatureByZipCode", ReplyAction="http://tempuri.org/ITemperatureConverter/GetTemperatureByZipCodeResponse")]
+        WeatherTravelPlanning.TemperatureServiceReference.TemperatureData GetTemperatureByZipCode(string zipCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemperatureConverter/GetTemperatureByZipCode", ReplyAction="http://tempuri.org/ITemperatureConverter/GetTemperatureByZipCodeResponse")]
+        System.Threading.Tasks.Task<WeatherTravelPlanning.TemperatureServiceReference.TemperatureData> GetTemperatureByZipCodeAsync(string zipCode);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -83,6 +200,14 @@ namespace WeatherTravelPlanning.TemperatureServiceReference {
         
         public System.Threading.Tasks.Task<double> CelsiusToFahrenheitAsync(double celsius) {
             return base.Channel.CelsiusToFahrenheitAsync(celsius);
+        }
+        
+        public WeatherTravelPlanning.TemperatureServiceReference.TemperatureData GetTemperatureByZipCode(string zipCode) {
+            return base.Channel.GetTemperatureByZipCode(zipCode);
+        }
+        
+        public System.Threading.Tasks.Task<WeatherTravelPlanning.TemperatureServiceReference.TemperatureData> GetTemperatureByZipCodeAsync(string zipCode) {
+            return base.Channel.GetTemperatureByZipCodeAsync(zipCode);
         }
     }
 }

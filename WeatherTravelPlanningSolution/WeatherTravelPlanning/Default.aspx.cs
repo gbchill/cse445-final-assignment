@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Web.UI;
 using System.ServiceModel;
+using System.Web;
+using WeatherTravelPlanning.Utilities;
+
 
 namespace WeatherTravelPlanning
 {
-    // Define a simple class for temperature data to avoid serialization issues
     [Serializable]
     public class SimpleTemperatureData
     {
@@ -19,13 +21,9 @@ namespace WeatherTravelPlanning
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {
-                // show the "default" TryIt view
                 mvTryIt.ActiveViewIndex = 0;
-            }
         }
 
-        // "Try It" buttons switch the MultiView
         protected void btnTryForecast_Click(object sender, EventArgs e) => mvTryIt.ActiveViewIndex = 1;
         protected void btnTryConverter_Click(object sender, EventArgs e) => mvTryIt.ActiveViewIndex = 2;
         protected void btnTryRainy_Click(object sender, EventArgs e) => mvTryIt.ActiveViewIndex = 3;
@@ -37,20 +35,15 @@ namespace WeatherTravelPlanning
         {
             try
             {
-                string zipCode = txtZipCode.Text.Trim();
-
-                if (string.IsNullOrEmpty(zipCode) || zipCode.Length != 5)
+                string zip = txtZipCode.Text.Trim();
+                if (zip.Length != 5)
                 {
-                    lblForecastResult.Text = "Please enter a valid 5-digit US zip code.";
+                    lblForecastResult.Text = "Please enter a valid 5‑digit ZIP.";
                     return;
                 }
 
-                WeatherServiceReference.WeatherForecastClient client =
-                    new WeatherServiceReference.WeatherForecastClient("BasicHttpBinding_IWeatherForecast");
-
-                string forecast = client.GetWeatherForecast(zipCode);
-                lblForecastResult.Text = forecast.Replace("\n", "<br/>");
-
+                var client = new WeatherServiceReference.WeatherForecastClient("BasicHttpBinding_IWeatherForecast");
+                lblForecastResult.Text = client.GetWeatherForecast(zip).Replace("\n", "<br/>");
                 client.Close();
             }
             catch (Exception ex)
@@ -63,43 +56,35 @@ namespace WeatherTravelPlanning
         {
             try
             {
-                string zipCode = txtConverterZipCode.Text.Trim();
-
-                if (string.IsNullOrEmpty(zipCode) || zipCode.Length != 5)
+                string zip = txtConverterZipCode.Text.Trim();
+                if (zip.Length != 5)
                 {
-                    lblConverterResult.Text = "Please enter a valid 5-digit US zip code.";
+                    lblConverterResult.Text = "Please enter a valid 5‑digit ZIP.";
                     return;
                 }
 
-                // Use the TemperatureConverterClient with existing methods
-                TemperatureServiceReference.TemperatureConverterClient client =
-                    new TemperatureServiceReference.TemperatureConverterClient("BasicHttpsBinding_ITemperatureConverter");
+                var client = new TemperatureServiceReference.TemperatureConverterClient("BasicHttpsBinding_ITemperatureConverter");
 
-                // For now, simulate temperature data as the service doesn't expose GetTemperatureByZipCode
-                double tempFahrenheit = 75.0; // Simulated temperature
-                double tempCelsius = client.FahrenheitToCelsius(tempFahrenheit);
+                //use the new  method
+                var data = client.GetTemperatureByZipCode(zip);
 
-                // Create a simple data object that can be serialized
-                SimpleTemperatureData tempData = new SimpleTemperatureData
+                var simpleData = new SimpleTemperatureData
                 {
-                    Location = zipCode,
-                    TemperatureFahrenheit = tempFahrenheit,
-                    TemperatureCelsius = tempCelsius,
-                    RetrievedAt = DateTime.Now
+                    Location = data.Location,
+                    TemperatureFahrenheit = data.TemperatureFahrenheit,
+                    TemperatureCelsius = data.TemperatureCelsius,
+                    RetrievedAt = data.RetrievedAt
                 };
 
-                // Display results
-                string result = $"<strong>Location:</strong> {tempData.Location}<br/>";
-                result += $"<strong>Temperature:</strong> {tempData.TemperatureFahrenheit}°F / {tempData.TemperatureCelsius}°C<br/>";
-                result += $"<strong>Retrieved at:</strong> {tempData.RetrievedAt:g}<br/>";
+                string html =
+                    $"<strong>Location:</strong> {simpleData.Location}<br/>" +
+                    $"<strong>Temperature:</strong> {simpleData.TemperatureFahrenheit:0}°F / {simpleData.TemperatureCelsius:0.0}°C<br/>" +
+                    $"<strong>Retrieved at:</strong> {simpleData.RetrievedAt:g}<br/>";
 
-                // Store the serializable object in ViewState
-                ViewState["TempData"] = tempData;
+                ViewState["TempData"] = simpleData;
                 ViewState["DisplayInF"] = true;
-
-                // Show toggle button
                 btnToggleTemp.Visible = true;
-                lblConverterResult.Text = result;
+                lblConverterResult.Text = html;
 
                 client.Close();
             }
@@ -112,26 +97,24 @@ namespace WeatherTravelPlanning
 
         protected void btnToggleTemp_Click(object sender, EventArgs e)
         {
-            if (ViewState["TempData"] != null)
+            if (ViewState["TempData"] is SimpleTemperatureData data)
             {
-                SimpleTemperatureData tempData = (SimpleTemperatureData)ViewState["TempData"];
-                bool displayInF = (bool)ViewState["DisplayInF"];
+                bool inF = (bool)ViewState["DisplayInF"];
+                string html = $"<strong>Location:</strong> {data.Location}<br/>";
 
-                string result = $"<strong>Location:</strong> {tempData.Location}<br/>";
-
-                if (displayInF)
+                if (inF)
                 {
-                    result += $"<strong>Temperature:</strong> {tempData.TemperatureCelsius}°C ({tempData.TemperatureFahrenheit}°F)<br/>";
+                    html += $"<strong>Temperature:</strong> {data.TemperatureCelsius:0.0}°C ({data.TemperatureFahrenheit:0}°F)<br/>";
                     ViewState["DisplayInF"] = false;
                 }
                 else
                 {
-                    result += $"<strong>Temperature:</strong> {tempData.TemperatureFahrenheit}°F ({tempData.TemperatureCelsius}°C)<br/>";
+                    html += $"<strong>Temperature:</strong> {data.TemperatureFahrenheit:0}°F ({data.TemperatureCelsius:0.0}°C)<br/>";
                     ViewState["DisplayInF"] = true;
                 }
 
-                result += $"<strong>Retrieved at:</strong> {tempData.RetrievedAt:g}<br/>";
-                lblConverterResult.Text = result;
+                html += $"<strong>Retrieved at:</strong> {data.RetrievedAt:g}<br/>";
+                lblConverterResult.Text = html;
             }
         }
 
@@ -139,38 +122,27 @@ namespace WeatherTravelPlanning
         {
             try
             {
-                string location = txtRainLocation.Text.Trim();
-                DateTime selectedDate;
-
-                if (string.IsNullOrEmpty(location) || location.Length != 5)
+                string zip = txtRainLocation.Text.Trim();
+                if (zip.Length != 5)
                 {
-                    lblRainyResult.Text = "Please enter a valid 5-digit US zip code.";
+                    lblRainyResult.Text = "Please enter a valid 5‑digit ZIP.";
                     return;
                 }
 
-                if (!DateTime.TryParse(txtRainDate.Text, out selectedDate))
-                {
-                    lblRainyResult.Text = "Please enter a valid date.";
-                    return;
-                }
+                //change to useuse today's date:
+                DateTime today = DateTime.Now.Date;
+                var client = new RainyDayServiceReference.RainyDayAdvisorClient("BasicHttpsBinding_IRainyDayAdvisor");
+                bool rainy = client.IsItRainy(zip, today);
+                string[] tips = client.GetRainyDayAdvice(zip, today);
 
-                RainyDayServiceReference.RainyDayAdvisorClient client =
-                    new RainyDayServiceReference.RainyDayAdvisorClient("BasicHttpsBinding_IRainyDayAdvisor");
+                string html = rainy
+                    ? "<strong>It's rainy today! Suggestions:</strong><br/>"
+                    : "<strong>No rain expected today. Suggestions:</strong><br/>";
 
-                bool isRainy = client.IsItRainy(location, selectedDate);
-                string[] advice = client.GetRainyDayAdvice(location, selectedDate);
+                foreach (var t in tips)
+                    html += "• " + t + "<br/>";
 
-                string result = string.Format("Weather forecast for {0} on {1}:<br/>",
-                    location, selectedDate.ToShortDateString());
-                result += isRainy ? "<strong>It is expected to be rainy!</strong><br/><br/>"
-                                  : "<strong>It is not expected to rain.</strong><br/><br/>";
-
-                foreach (string suggestion in advice)
-                {
-                    result += "• " + suggestion + "<br/>";
-                }
-
-                lblRainyResult.Text = result;
+                lblRainyResult.Text = html;
                 client.Close();
             }
             catch (Exception ex)
@@ -181,22 +153,125 @@ namespace WeatherTravelPlanning
 
         protected void btnEncrypt_Click(object sender, EventArgs e)
         {
-            // TODO: encrypt txtPlainText.Text, display in lblEncrypted
+            try
+            {
+                string txt = txtPlainText.Text;
+                if (string.IsNullOrEmpty(txt))
+                {
+                    lblEncrypted.Text = "Enter text to encrypt.";
+                    return;
+                }
+
+                var enc = new WeatherEncryption();
+                lblEncrypted.Text = enc.Encrypt(txt);
+                ViewState["EncryptedText"] = lblEncrypted.Text;
+            }
+            catch (Exception ex)
+            {
+                lblEncrypted.Text = "Error encrypting: " + ex.Message;
+            }
         }
 
         protected void btnDecrypt_Click(object sender, EventArgs e)
         {
-            // TODO: decrypt lblEncrypted.Text, display in lblDecrypted
+            try
+            {
+                string cipher = ViewState["EncryptedText"] as string;
+                if (string.IsNullOrEmpty(cipher))
+                {
+                    lblDecrypted.Text = "No encrypted text to decrypt.";
+                    return;
+                }
+
+                var enc = new WeatherEncryption();
+                lblDecrypted.Text = enc.Decrypt(cipher);
+            }
+            catch (Exception ex)
+            {
+                lblDecrypted.Text = "Error decrypting: " + ex.Message;
+            }
         }
 
         protected void btnSavePreferences_Click(object sender, EventArgs e)
         {
-            // TODO: write a cookie using ddlTempUnit.SelectedValue & txtPrefLocation.Text
+            string unit = ddlTempUnit.SelectedValue;
+            string loc = txtPrefLocation.Text.Trim();
+            if (string.IsNullOrEmpty(loc))
+            {
+                lblCookieResult.Text = "Enter a location.";
+                return;
+            }
+
+            try
+            {
+                var ck = new HttpCookie("WeatherPreferences")
+                {
+                    ["TempUnit"] = unit,
+                    ["Location"] = loc,
+                    Expires = DateTime.Now.AddDays(30)
+                };
+                Response.Cookies.Add(ck);
+                Session["TemperatureUnit"] = unit;
+                Session["PreferredLocation"] = loc;
+                lblCookieResult.Text = "Preferences saved!";
+            }
+            catch (Exception ex)
+            {
+                lblCookieResult.Text = "Error saving preferences: " + ex.Message;
+            }
         }
 
         protected void btnLoadPreferences_Click(object sender, EventArgs e)
         {
-            // TODO: read your WeatherPreferences cookie, show results in lblCookieResult
+            try
+            {
+                var ck = Request.Cookies["WeatherPreferences"];
+                if (ck != null)
+                {
+                    ddlTempUnit.SelectedValue = ck["TempUnit"] ?? ddlTempUnit.SelectedValue;
+                    txtPrefLocation.Text = ck["Location"];
+                    lblCookieResult.Text = $"Loaded: {ddlTempUnit.SelectedValue} – {txtPrefLocation.Text}";
+                }
+                else
+                {
+                    lblCookieResult.Text = "No preferences found.";
+                }
+            }
+            catch (Exception ex)
+            {
+                lblCookieResult.Text = "Error loading preferences: " + ex.Message;
+            }
         }
+        protected void btnDemoWeatherControl_Click(object sender, EventArgs e)
+        {
+            var control = (WeatherTravelPlanning.UserControls.WeatherDisplay)weatherDisplayDemo;
+            control.SetWeatherData(
+                location: "Phoenix, AZ",
+                currentTemp: 75.5,
+                highTemp: 82.0,
+                lowTemp: 68.3,
+                conditions: "Partly Cloudy",
+                rainChance: 10.0,
+                windSpeed: 5.5,
+                humidity: 45.0
+            );
+        }
+        protected void btnMember_Click(object sender, EventArgs e)
+        {
+            if (!User.Identity.IsAuthenticated)
+                Response.Redirect("Login.aspx?ReturnUrl=Member.aspx");
+            else
+                Response.Redirect("Member.aspx");
+        }
+
+        protected void btnStaff_Click(object sender, EventArgs e)
+        {
+            if (!User.Identity.IsAuthenticated)
+                Response.Redirect("Login.aspx?ReturnUrl=Staff.aspx");
+            else
+                Response.Redirect("Staff.aspx");
+        }
+
+
     }
 }

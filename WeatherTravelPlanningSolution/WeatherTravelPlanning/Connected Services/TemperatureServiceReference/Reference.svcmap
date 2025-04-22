@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="e07c3b7d-87c0-4823-bfc0-cf3dbc2ba4b1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="62123a3a-624a-4ab4-b429-fe33da377ea0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,10 +22,11 @@
     <MetadataSource Address="https://localhost:44391/TemperatureConverter.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="TemperatureConverter.wsdl" MetadataType="Wsdl" ID="59989363-74d2-4190-923e-1edde2752d13" SourceId="1" SourceUrl="https://localhost:44391/TemperatureConverter.svc?wsdl" />
-    <MetadataFile FileName="TemperatureConverter.xsd" MetadataType="Schema" ID="148961b8-dda8-4c3e-9328-e895f36b2fa7" SourceId="1" SourceUrl="https://localhost:44391/TemperatureConverter.svc?xsd=xsd1" />
-    <MetadataFile FileName="TemperatureConverter1.xsd" MetadataType="Schema" ID="c4f7a673-0991-4072-9bc7-41707167f4c1" SourceId="1" SourceUrl="https://localhost:44391/TemperatureConverter.svc?xsd=xsd0" />
-    <MetadataFile FileName="TemperatureConverter.disco" MetadataType="Disco" ID="beac8404-8afd-48ad-aa95-6616cf17c96a" SourceId="1" SourceUrl="https://localhost:44391/TemperatureConverter.svc?disco" />
+    <MetadataFile FileName="TemperatureConverter.xsd" MetadataType="Schema" ID="d9c9e3ea-e9df-4f67-9eb0-eb0798171d97" SourceId="1" SourceUrl="https://localhost:44391/TemperatureConverter.svc?xsd=xsd2" />
+    <MetadataFile FileName="TemperatureConverter.wsdl" MetadataType="Wsdl" ID="d3d2a0f5-78f1-4ec8-ba4b-616d5ef1d128" SourceId="1" SourceUrl="https://localhost:44391/TemperatureConverter.svc?wsdl" />
+    <MetadataFile FileName="TemperatureConverter1.xsd" MetadataType="Schema" ID="0e1a1db0-7bf3-4155-8bcb-76fcebdc9d8b" SourceId="1" SourceUrl="https://localhost:44391/TemperatureConverter.svc?xsd=xsd1" />
+    <MetadataFile FileName="TemperatureConverter2.xsd" MetadataType="Schema" ID="75443f38-4d36-47a1-9a8e-04d5465fa16b" SourceId="1" SourceUrl="https://localhost:44391/TemperatureConverter.svc?xsd=xsd0" />
+    <MetadataFile FileName="TemperatureConverter.disco" MetadataType="Disco" ID="57ff35cd-568b-4a85-bbca-ce5757db7eda" SourceId="1" SourceUrl="https://localhost:44391/TemperatureConverter.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
