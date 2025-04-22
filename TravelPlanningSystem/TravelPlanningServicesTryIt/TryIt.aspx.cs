@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TravelPlanningServicesTryIt  
+namespace TravelPlanningServicesTryIt
 {
     public partial class TryIt : System.Web.UI.Page
     {
@@ -18,6 +18,7 @@ namespace TravelPlanningServicesTryIt
         private string CurrencyServiceUrl => "http://localhost:52780/CurrencyConverter.svc";
         private string WordFilterServiceUrl => "http://localhost:52780/WordFilter.svc";
 
+       
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,7 +52,7 @@ namespace TravelPlanningServicesTryIt
                 }
 
                 // create a service client
-                WeatherServiceReference.WeatherServiceClient client = 
+                WeatherServiceReference.WeatherServiceClient client =
                     new WeatherServiceReference.WeatherServiceClient();
 
                 // call the service
@@ -87,7 +88,7 @@ namespace TravelPlanningServicesTryIt
                 }
 
                 // use the service reference client
-                CurrencyServiceReference.CurrencyConverterClient client = 
+                CurrencyServiceReference.CurrencyConverterClient client =
                     new CurrencyServiceReference.CurrencyConverterClient();
 
                 // call the service
@@ -121,7 +122,7 @@ namespace TravelPlanningServicesTryIt
                 }
 
                 // create service client
-                WordFilterServiceReference.WordFilterClient client =  
+                WordFilterServiceReference.WordFilterClient client =
                     new WordFilterServiceReference.WordFilterClient();
 
                 // call the service
@@ -162,7 +163,7 @@ namespace TravelPlanningServicesTryIt
                 }
 
                 // create service client
-                WordFilterServiceReference.WordFilterClient client =  
+                WordFilterServiceReference.WordFilterClient client =
                     new WordFilterServiceReference.WordFilterClient();
 
                 // call the service
@@ -209,7 +210,7 @@ namespace TravelPlanningServicesTryIt
                 }
 
                 // create service client
-                WordFilterServiceReference.WordFilterClient client = 
+                WordFilterServiceReference.WordFilterClient client =
                     new WordFilterServiceReference.WordFilterClient();
 
                 // call the service

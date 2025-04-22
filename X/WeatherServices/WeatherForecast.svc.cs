@@ -1,12 +1,9 @@
 ﻿using System;
-using System.IO;
-using System.Net;
-using System.Web.Script.Serialization;
 using System.Collections.Generic;
 
-namespace TravelPlanningServices
+namespace WeatherServices
 {
-    public class WeatherService : IWeatherService
+    public class WeatherForecast : IWeatherForecast
     {
         public string GetWeatherForecast(string zipCode)
         {
