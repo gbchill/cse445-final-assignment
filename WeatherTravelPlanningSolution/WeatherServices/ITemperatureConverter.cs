@@ -1,6 +1,9 @@
 ﻿using System;
 using System.ServiceModel;
 using System.Runtime.Serialization;
+using System.Net;
+using System.IO;
+using System.Web.Script.Serialization;
 
 namespace WeatherServices
 {
