@@ -7,7 +7,7 @@ namespace WeatherTravelPlanning.Utilities
 {
     public class WeatherEncryption
     {
-        // In production, store this securely (not hard‑coded)
+
         private readonly string encryptionKey = "Weather12345Key!";
 
         public string Encrypt(string plainText)

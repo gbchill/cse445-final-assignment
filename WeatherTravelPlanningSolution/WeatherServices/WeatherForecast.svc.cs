@@ -12,20 +12,18 @@ namespace WeatherServices
         {
             try
             {
-                // validate zip code input (basic validation)
+                //basic validation
                 if (string.IsNullOrEmpty(zipCode) || zipCode.Length != 5)
                 {
                     return "Error: Please provide a valid 5-digit US zip code.";
                 }
 
-                // First convert zip code to coordinates using free API
                 var coordinates = GetCoordinatesFromZipCode(zipCode);
                 if (coordinates == null)
                 {
                     return "Error: Could not determine location for the provided zip code.";
                 }
 
-                // Get the forecast data
                 var forecast = GetForecastFromNWS(coordinates.Latitude, coordinates.Longitude, zipCode);
                 return forecast;
             }
@@ -39,7 +37,7 @@ namespace WeatherServices
         {
             try
             {
-                // Use Zippopotam.us API for free ZIP code lookup
+
                 string apiUrl = $"https://api.zippopotam.us/us/{zipCode}";
 
                 using (WebClient client = new WebClient())
@@ -69,7 +67,7 @@ namespace WeatherServices
             }
             catch (Exception)
             {
-                // If Zippopotam fails, try OpenDataSoft API as backup
+
                 try
                 {
                     string odApiUrl = $"https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q={zipCode}&facet=state&facet=timezone&facet=dst";
@@ -110,7 +108,7 @@ namespace WeatherServices
         {
             try
             {
-                // Using HttpWebRequest for more control over headers
+
                 string pointsUrl = $"https://api.weather.gov/points/{latitude},{longitude}";
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(pointsUrl);
@@ -129,11 +127,11 @@ namespace WeatherServices
                     }
                 }
 
-                // Parse the JSON using JavaScriptSerializer
+   
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 dynamic pointsData = serializer.Deserialize<dynamic>(pointsResponse);
 
-                // Extract forecast URL from the response
+     
                 string forecastUrl = pointsData["properties"]["forecast"];
 
                 // Now get the actual forecast

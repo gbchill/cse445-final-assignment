@@ -1,4 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WeatherTravelPlanning.Default" %>
+<%@ Register TagPrefix="uc" TagName="WeatherDisplay" Src="~/Controls/WeatherDisplay.ascx" %>
+
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -35,7 +37,7 @@
                 </tr>
                 <!-- Web Services -->
                 <tr>
-                    <td>Team Member 1</td>
+                    <td>Karen Garcia</td>
                     <td>WCF Service</td>
                     <td>GetWeatherForecast</td>
                     <td>zipCode (string)</td>
@@ -44,7 +46,7 @@
                     <td><asp:Button ID="btnTryForecast" runat="server" Text="Try It" OnClick="btnTryForecast_Click" /></td>
                 </tr>
                 <tr>
-                    <td>Team Member 1</td>
+                    <td>George Badulescu</td>
                     <td>WCF Service</td>
                     <td>ConvertTemperature</td>
                     <td>temp (double), fromUnit (string), toUnit (string)</td>
@@ -53,7 +55,7 @@
                     <td><asp:Button ID="btnTryConverter" runat="server" Text="Try It" OnClick="btnTryConverter_Click" /></td>
                 </tr>
                 <tr>
-                    <td>Team Member 2</td>
+                    <td>Suren Adzhamoglyan</td>
                     <td>WCF Service</td>
                     <td>GetRainyDayAdvice</td>
                     <td>zipCode (string)</td>
@@ -63,7 +65,7 @@
                 </tr>
                 <!-- Local Components -->
                 <tr>
-                    <td>Team Member 1</td>
+                    <td>George Badulescu</td>
                     <td>DLL</td>
                     <td>EncryptUserData</td>
                     <td>data (string)</td>
@@ -72,7 +74,7 @@
                     <td><asp:Button ID="btnTryEncryption" runat="server" Text="Try It" OnClick="btnTryEncryption_Click" /></td>
                 </tr>
                 <tr>
-                    <td>Team Member 2</td>
+                    <td>George Badulescu,Karen Garcia,Suren Adzhamoglyan</td>
                     <td>User Control</td>
                     <td>WeatherDisplay</td>
                     <td>weatherData (WeatherData)</td>
@@ -81,7 +83,7 @@
                     <td><asp:Button ID="btnTryControl" runat="server" Text="Try It" OnClick="btnTryControl_Click" /></td>
                 </tr>
                 <tr>
-                    <td>Team Member 1</td>
+                    <td>Karen Garcia</td>
                     <td>Global.asax</td>
                     <td>Application_Start</td>
                     <td>–</td>
@@ -90,7 +92,7 @@
                     <td>N/A</td>
                 </tr>
                 <tr>
-                    <td>Team Member 2</td>
+                    <td>Suren Adzhamoglyan</td>
                     <td>Cookie</td>
                     <td>StoreUserPreferences</td>
                     <td>preferences (UserPrefs)</td>
@@ -103,12 +105,12 @@
             <h2>Try It Section</h2>
             <div class="try-it-panel">
                 <asp:MultiView ID="mvTryIt" runat="server" ActiveViewIndex="0">
-                    <!-- View 0: Default -->
+   
                     <asp:View ID="vwDefault" runat="server">
                         <p>Click a “Try It” button above to test each component.</p>
                     </asp:View>
                     
-                    <!-- View 1: Weather Forecast -->
+     
                     <asp:View ID="vwForecast" runat="server">
                         <h3>7‑Day Weather Forecast</h3>
                         <label>Enter ZIP Code:</label>
@@ -118,7 +120,7 @@
                         <asp:Label ID="lblForecastResult" runat="server" />
                     </asp:View>
                     
-                    <!-- View 2: Temperature Converter -->
+
                     <asp:View ID="vwConverter" runat="server">
                         <h3>Temperature Converter by ZIP</h3>
                         <p>Enter a ZIP code to fetch today’s temperature and convert:</p>
@@ -131,7 +133,7 @@
                         <asp:Button ID="btnToggleTemp" runat="server" Text="Toggle °F/°C" OnClick="btnToggleTemp_Click" Visible="false" />
                     </asp:View>
                     
-                    <!-- View 3: Rainy Day Advisor -->
+
                     <asp:View ID="vwRainy" runat="server">
                         <h3>Rainy Day Activity Advisor (Today)</h3>
                         <label>Enter ZIP Code:</label>
@@ -141,7 +143,7 @@
                         <asp:Label ID="lblRainyResult" runat="server" />
                     </asp:View>
                     
-                    <!-- View 4: Encryption -->
+
                     <asp:View ID="vwEncryption" runat="server">
                         <h3>Data Encryption Test</h3>
                         <label>Enter text to encrypt:</label>
@@ -154,14 +156,15 @@
                         <br />
                         <label>Decrypted text:</label> <asp:Label ID="lblDecrypted" runat="server" />
                     </asp:View>
-                    
-                    <!-- View 5: User Control -->
+
                     <asp:View ID="vwUserControl" runat="server">
-                        <h3>Weather Display Control Test</h3>
-                        <!-- your <uc:WeatherDisplay …/> here -->
+                        <h3>Weather Display User Control</h3>
+                        <asp:Button ID="btnDemoWeatherControl" runat="server" Text="Demonstrate Weather Control" OnClick="btnDemoWeatherControl_Click" />
+                        <br /><br />
+                        <uc:WeatherDisplay ID="weatherDisplayDemo" runat="server" />
                     </asp:View>
                     
-                    <!-- View 6: Cookie -->
+   
                     <asp:View ID="vwCookie" runat="server">
                         <h3>User Preferences Cookie Test</h3>
                         <label>Temperature Unit:</label>
@@ -182,9 +185,9 @@
             </div>
             
             <div class="button-panel">
-                <h3>Access Control (Assignment 6)</h3>
-                <asp:Button ID="btnMember" runat="server" Text="Member Page" Enabled="false" />
-                <asp:Button ID="btnStaff" runat="server" Text="Staff Page" Enabled="false" />
+                <h3>Access Control (George Badulescu) </h3>
+              <asp:Button ID="btnMember" runat="server" Text="Member Page" OnClick="btnMember_Click" />
+              <asp:Button ID="btnStaff" runat="server" Text="Staff Page" OnClick="btnStaff_Click" />
             </div>
         </div>
     </form>

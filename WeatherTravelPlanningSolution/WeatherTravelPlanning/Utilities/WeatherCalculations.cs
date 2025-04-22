@@ -4,7 +4,7 @@ namespace WeatherTravelPlanning.Utilities
 {
     public class WeatherCalculations
     {
-        // Temperature conversion methods
+        //temp conversion methods
         public double CelsiusToFahrenheit(double celsius)
         {
             return (celsius * 9 / 5) + 32;
@@ -15,7 +15,7 @@ namespace WeatherTravelPlanning.Utilities
             return (fahrenheit - 32) * 5 / 9;
         }
 
-        // Wind speed conversions
+        //wind speed conversions
         public double MphToKmh(double mph)
         {
             return mph * 1.60934;
@@ -26,11 +26,11 @@ namespace WeatherTravelPlanning.Utilities
             return kmh / 1.60934;
         }
 
-        // Calculate heat index (feels‑like temperature)
+    
         public double CalculateHeatIndex(double temperatureF, double relativeHumidity)
         {
             if (temperatureF < 80)
-                return temperatureF;  // Only applies when T ≥ 80°F
+                return temperatureF;  //T . 80F
 
             double HI = -42.379
                       + 2.04901523 * temperatureF
@@ -45,11 +45,11 @@ namespace WeatherTravelPlanning.Utilities
             return Math.Round(HI, 1);
         }
 
-        // Calculate wind chill
+        //Calcul wind chill
         public double CalculateWindChill(double temperatureF, double windSpeedMph)
         {
             if (temperatureF > 50 || windSpeedMph < 3)
-                return temperatureF;  // Only applies when T ≤ 50°F and wind ≥ 3 mph
+                return temperatureF;  
 
             double windChill = 35.74
                              + 0.6215 * temperatureF
@@ -59,7 +59,7 @@ namespace WeatherTravelPlanning.Utilities
             return Math.Round(windChill, 1);
         }
 
-        // Calculate dew point
+
         public double CalculateDewPoint(double temperatureC, double relativeHumidity)
         {
             const double a = 17.27;
@@ -72,7 +72,7 @@ namespace WeatherTravelPlanning.Utilities
             return Math.Round(dewPoint, 1);
         }
 
-        // Pressure conversions
+        //Pressure conversions
         public double InHgToMbar(double inHg)
         {
             return inHg * 33.8639;

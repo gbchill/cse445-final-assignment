@@ -8,23 +8,27 @@
         margin: 10px 0;
         background-color: #f9f9f9;
         max-width: 400px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     .weather-header {
         font-size: 20px;
         font-weight: bold;
         color: #333;
         margin-bottom: 10px;
+        text-align: center;
     }
     .temperature {
         font-size: 36px;
         font-weight: bold;
         color: #2c3e50;
         margin: 10px 0;
+        text-align: center;
     }
     .conditions {
         font-size: 18px;
         color: #666;
         margin: 5px 0;
+        text-align: center;
     }
     .details {
         display: grid;

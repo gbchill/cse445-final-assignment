@@ -65,7 +65,7 @@ namespace WeatherTravelPlanning
 
                 var client = new TemperatureServiceReference.TemperatureConverterClient("BasicHttpsBinding_ITemperatureConverter");
 
-                // Use the new GetTemperatureByZipCode method
+                //use the new  method
                 var data = client.GetTemperatureByZipCode(zip);
 
                 var simpleData = new SimpleTemperatureData
@@ -129,7 +129,7 @@ namespace WeatherTravelPlanning
                     return;
                 }
 
-                // Always use today's date:
+                //change to useuse today's date:
                 DateTime today = DateTime.Now.Date;
                 var client = new RainyDayServiceReference.RainyDayAdvisorClient("BasicHttpsBinding_IRainyDayAdvisor");
                 bool rainy = client.IsItRainy(zip, today);
@@ -242,5 +242,36 @@ namespace WeatherTravelPlanning
                 lblCookieResult.Text = "Error loading preferences: " + ex.Message;
             }
         }
+        protected void btnDemoWeatherControl_Click(object sender, EventArgs e)
+        {
+            var control = (WeatherTravelPlanning.UserControls.WeatherDisplay)weatherDisplayDemo;
+            control.SetWeatherData(
+                location: "Phoenix, AZ",
+                currentTemp: 75.5,
+                highTemp: 82.0,
+                lowTemp: 68.3,
+                conditions: "Partly Cloudy",
+                rainChance: 10.0,
+                windSpeed: 5.5,
+                humidity: 45.0
+            );
+        }
+        protected void btnMember_Click(object sender, EventArgs e)
+        {
+            if (!User.Identity.IsAuthenticated)
+                Response.Redirect("Login.aspx?ReturnUrl=Member.aspx");
+            else
+                Response.Redirect("Member.aspx");
+        }
+
+        protected void btnStaff_Click(object sender, EventArgs e)
+        {
+            if (!User.Identity.IsAuthenticated)
+                Response.Redirect("Login.aspx?ReturnUrl=Staff.aspx");
+            else
+                Response.Redirect("Staff.aspx");
+        }
+
+
     }
 }

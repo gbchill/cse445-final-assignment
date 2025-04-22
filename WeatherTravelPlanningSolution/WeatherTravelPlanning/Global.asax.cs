@@ -5,9 +5,7 @@ namespace WeatherTravelPlanning
 {
     public class Global : HttpApplication
     {
-        /// <summary>
-        /// Runs once when the application starts.
-        /// </summary>
+
         protected void Application_Start(object sender, EventArgs e)
         {
             // Initialize weather cache values
@@ -19,18 +17,14 @@ namespace WeatherTravelPlanning
                 "Weather Application Started: " + DateTime.Now);
         }
 
-        /// <summary>
-        /// Runs when the application shuts down.
-        /// </summary>
+   
         protected void Application_End(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine(
                 "Weather Application Ended: " + DateTime.Now);
         }
 
-        /// <summary>
-        /// Catches any unhandled exceptions at the application level.
-        /// </summary>
+  
         //protected void Application_Error(object sender, EventArgs e)
         //{
         //    Exception ex = Server.GetLastError();
@@ -42,9 +36,6 @@ namespace WeatherTravelPlanning
         //    Response.Redirect("~/ErrorPage.aspx");
         //}
 
-        /// <summary>
-        /// Runs when a new user session begins.
-        /// </summary>
         protected void Session_Start(object sender, EventArgs e)
         {
             Session["SessionStartTime"] = DateTime.Now;
@@ -62,9 +53,7 @@ namespace WeatherTravelPlanning
                 "New Session Started: " + Session.SessionID);
         }
 
-        /// <summary>
-        /// Runs when a user session ends (InProc only).
-        /// </summary>
+    
         protected void Session_End(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine(
