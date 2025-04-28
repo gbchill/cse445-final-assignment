@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="4c63ac50-6852-466a-8872-14def1562df3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="d43af369-b84c-46cc-86c8-9915049e778f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,13 +19,12 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="https://localhost:44391/WeatherForecast.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://webstrar50.fulton.asu.edu/page1/WeatherForecast.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="WeatherForecast.xsd" MetadataType="Schema" ID="c7f3ee45-9371-4d10-8a66-577b613d8d31" SourceId="1" SourceUrl="https://localhost:44391/WeatherForecast.svc?xsd=xsd0" />
-    <MetadataFile FileName="WeatherForecast.disco" MetadataType="Disco" ID="e797754c-7013-44b7-8a46-060a30fe49bd" SourceId="1" SourceUrl="https://localhost:44391/WeatherForecast.svc?disco" />
-    <MetadataFile FileName="WeatherForecast.wsdl" MetadataType="Wsdl" ID="217b61bd-b52c-4a01-9431-2f5e1987f59e" SourceId="1" SourceUrl="https://localhost:44391/WeatherForecast.svc?wsdl" />
-    <MetadataFile FileName="WeatherForecast1.xsd" MetadataType="Schema" ID="667e57d5-ef88-4d32-815b-1168c94592fa" SourceId="1" SourceUrl="https://localhost:44391/WeatherForecast.svc?xsd=xsd1" />
+    <MetadataFile FileName="WeatherForecast.xsd" MetadataType="Schema" ID="a12b2cb9-3676-4657-9421-04d2ccfbfaf0" SourceId="1" SourceUrl="http://webstrar50.fulton.asu.edu/Page1/WeatherForecast.svc?xsd=xsd1" />
+    <MetadataFile FileName="WeatherForecast.wsdl" MetadataType="Wsdl" ID="85fbc290-6563-47ba-8c12-60c7612ac74d" SourceId="1" SourceUrl="http://webstrar50.fulton.asu.edu/page1/WeatherForecast.svc?wsdl" />
+    <MetadataFile FileName="WeatherForecast1.xsd" MetadataType="Schema" ID="6a2d35e8-d5fe-4408-a56f-71ff94c63d10" SourceId="1" SourceUrl="http://webstrar50.fulton.asu.edu/Page1/WeatherForecast.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

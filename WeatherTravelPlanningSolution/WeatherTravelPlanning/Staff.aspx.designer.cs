@@ -11,7 +11,7 @@ namespace WeatherTravelPlanning
 {
 
 
-    public partial class Login
+    public partial class Staff
     {
 
         /// <summary>
@@ -33,75 +33,84 @@ namespace WeatherTravelPlanning
         protected global::System.Web.UI.WebControls.Label lblMessage;
 
         /// <summary>
-        /// lblUserType control.
+        /// lblEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserType;
+        protected global::System.Web.UI.WebControls.Label lblEmail;
 
         /// <summary>
-        /// rbMember control.
+        /// lblEmailValue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbMember;
+        protected global::System.Web.UI.WebControls.Label lblEmailValue;
 
         /// <summary>
-        /// rbStaff control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbStaff;
+        protected global::System.Web.UI.WebControls.Label lblName;
 
         /// <summary>
-        /// lblUsername control.
+        /// lblNameValue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUsername;
+        protected global::System.Web.UI.WebControls.Label lblNameValue;
 
         /// <summary>
-        /// txtUsername control.
+        /// lblCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsername;
+        protected global::System.Web.UI.WebControls.Label lblCity;
 
         /// <summary>
-        /// lblPassword control.
+        /// lblCityValue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPassword;
+        protected global::System.Web.UI.WebControls.Label lblCityValue;
 
         /// <summary>
-        /// txtPassword control.
+        /// lblXmlContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPassword;
+        protected global::System.Web.UI.WebControls.Label lblXmlContent;
 
         /// <summary>
-        /// btnLogin control.
+        /// txtXmlContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogin;
+        protected global::System.Web.UI.WebControls.TextBox txtXmlContent;
+
+        /// <summary>
+        /// btnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSave;
     }
 }

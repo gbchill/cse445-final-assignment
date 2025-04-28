@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WeatherTravelPlanning.Default" %>
 <%@ Register TagPrefix="uc" TagName="WeatherDisplay" Src="~/Controls/WeatherDisplay.ascx" %>
 
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -35,7 +34,7 @@
                     <th>Description</th>
                     <th>Try It</th>
                 </tr>
-                <!-- Web Services -->
+                <!-- Web Services (Assignment 5) -->
                 <tr>
                     <td>Karen Garcia</td>
                     <td>WCF Service</td>
@@ -43,16 +42,16 @@
                     <td>zipCode (string)</td>
                     <td>WeatherData[]</td>
                     <td>Returns 7-day weather forecast for given ZIP</td>
-                    <td><asp:Button ID="btnTryForecast" runat="server" Text="Try It" OnClick="btnTryForecast_Click" /></td>
+                    <td><asp:Button ID="btnTryForecast" runat="server" Text="Try It" OnClick="btnTryForecast_Click" /></td>
                 </tr>
                 <tr>
                     <td>George Badulescu</td>
                     <td>WCF Service</td>
                     <td>ConvertTemperature</td>
-                    <td>temp (double), fromUnit (string), toUnit (string)</td>
+                    <td>temp (double), fromUnit (string), toUnit (string)</td>
                     <td>double</td>
                     <td>Converts between Fahrenheit and Celsius</td>
-                    <td><asp:Button ID="btnTryConverter" runat="server" Text="Try It" OnClick="btnTryConverter_Click" /></td>
+                    <td><asp:Button ID="btnTryConverter" runat="server" Text="Try It" OnClick="btnTryConverter_Click" /></td>
                 </tr>
                 <tr>
                     <td>Suren Adzhamoglyan</td>
@@ -60,10 +59,10 @@
                     <td>GetRainyDayAdvice</td>
                     <td>zipCode (string)</td>
                     <td>string[]</td>
-                    <td>Returns today’s rainy‑day suggestions</td>
-                    <td><asp:Button ID="btnTryRainy" runat="server" Text="Try It" OnClick="btnTryRainy_Click" /></td>
+                    <td>Returns today’s rainy-day suggestions</td>
+                    <td><asp:Button ID="btnTryRainy" runat="server" Text="Try It" OnClick="btnTryRainy_Click" /></td>
                 </tr>
-                <!-- Local Components -->
+                <!-- Local Components (Assignment 5) -->
                 <tr>
                     <td>George Badulescu</td>
                     <td>DLL</td>
@@ -71,16 +70,16 @@
                     <td>data (string)</td>
                     <td>string</td>
                     <td>Encrypts sensitive user data using AES</td>
-                    <td><asp:Button ID="btnTryEncryption" runat="server" Text="Try It" OnClick="btnTryEncryption_Click" /></td>
+                    <td><asp:Button ID="btnTryEncryption" runat="server" Text="Try It" OnClick="btnTryEncryption_Click" /></td>
                 </tr>
                 <tr>
-                    <td>George Badulescu,Karen Garcia,Suren Adzhamoglyan</td>
+                    <td>George Badulescu, Karen Garcia, Suren Adzhamoglyan</td>
                     <td>User Control</td>
                     <td>WeatherDisplay</td>
                     <td>weatherData (WeatherData)</td>
                     <td>void</td>
                     <td>Displays weather in formatted view</td>
-                    <td><asp:Button ID="btnTryControl" runat="server" Text="Try It" OnClick="btnTryControl_Click" /></td>
+                    <td><asp:Button ID="btnTryControl" runat="server" Text="Try It" OnClick="btnTryControl_Click" /></td>
                 </tr>
                 <tr>
                     <td>Karen Garcia</td>
@@ -98,21 +97,65 @@
                     <td>preferences (UserPrefs)</td>
                     <td>void</td>
                     <td>Stores temp units &amp; location</td>
-                    <td><asp:Button ID="btnTryCookie" runat="server" Text="Try It" OnClick="btnTryCookie_Click" /></td>
+                    <td><asp:Button ID="btnTryCookie" runat="server" Text="Try It" OnClick="btnTryCookie_Click" /></td>
+                </tr>
+                <!-- Assignment 6 Components -->
+                <tr>
+                    <td>Karen Garcia</td>
+                    <td>ASPX Page</td>
+                    <td>Member.aspx</td>
+                    <td>–</td>
+                    <td>Page</td>
+                    <td>Authenticated member page with CAPTCHA sign-up; credentials stored (hashed) in Member.xml via local DLL</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td>George Badulescu</td>
+                    <td>XML File</td>
+                    <td>Member.xml</td>
+                    <td>username (string), password (string-hash)</td>
+                    <td>void</td>
+                    <td>Stores hashed member credentials for authentication</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td>Karen Garcia</td>
+                    <td>User Control</td>
+                    <td>CaptchaControl</td>
+                    <td>–</td>
+                    <td>bool</td>
+                    <td>Generates and validates image CAPTCHA for member sign-up</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td>Suren Adzhamoglyan</td>
+                    <td>ASPX Page</td>
+                    <td>Staff.aspx</td>
+                    <td>–</td>
+                    <td>Page</td>
+                    <td>Authorized staff page with credentials read from Staff.xml</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td>Suren Adzhamoglyan</td>
+                    <td>XML File</td>
+                    <td>Staff.xml</td>
+                    <td>username (string), password (string)</td>
+                    <td>void</td>
+                    <td>Stores staff credentials for access control (includes TA account)</td>
+                    <td>N/A</td>
                 </tr>
             </table>
             
             <h2>Try It Section</h2>
             <div class="try-it-panel">
                 <asp:MultiView ID="mvTryIt" runat="server" ActiveViewIndex="0">
-   
                     <asp:View ID="vwDefault" runat="server">
-                        <p>Click a “Try It” button above to test each component.</p>
+                        <p>Click a “Try It” button above to test each component.</p>
                     </asp:View>
                     
-     
                     <asp:View ID="vwForecast" runat="server">
-                        <h3>7‑Day Weather Forecast</h3>
+                        <h3>7-Day Weather Forecast</h3>
                         <label>Enter ZIP Code:</label>
                         <asp:TextBox ID="txtZipCode" runat="server" MaxLength="5" />
                         <asp:Button ID="btnGetForecast" runat="server" Text="Get Forecast" OnClick="btnGetForecast_Click" />
@@ -120,7 +163,6 @@
                         <asp:Label ID="lblForecastResult" runat="server" />
                     </asp:View>
                     
-
                     <asp:View ID="vwConverter" runat="server">
                         <h3>Temperature Converter by ZIP</h3>
                         <p>Enter a ZIP code to fetch today’s temperature and convert:</p>
@@ -133,7 +175,6 @@
                         <asp:Button ID="btnToggleTemp" runat="server" Text="Toggle °F/°C" OnClick="btnToggleTemp_Click" Visible="false" />
                     </asp:View>
                     
-
                     <asp:View ID="vwRainy" runat="server">
                         <h3>Rainy Day Activity Advisor (Today)</h3>
                         <label>Enter ZIP Code:</label>
@@ -143,7 +184,6 @@
                         <asp:Label ID="lblRainyResult" runat="server" />
                     </asp:View>
                     
-
                     <asp:View ID="vwEncryption" runat="server">
                         <h3>Data Encryption Test</h3>
                         <label>Enter text to encrypt:</label>
@@ -164,7 +204,6 @@
                         <uc:WeatherDisplay ID="weatherDisplayDemo" runat="server" />
                     </asp:View>
                     
-   
                     <asp:View ID="vwCookie" runat="server">
                         <h3>User Preferences Cookie Test</h3>
                         <label>Temperature Unit:</label>
@@ -185,9 +224,9 @@
             </div>
             
             <div class="button-panel">
-                <h3>Access Control (George Badulescu) </h3>
-              <asp:Button ID="btnMember" runat="server" Text="Member Page" OnClick="btnMember_Click" />
-              <asp:Button ID="btnStaff" runat="server" Text="Staff Page" OnClick="btnStaff_Click" />
+                <h3>Access Control (George Badulescu)</h3>
+                <asp:Button ID="btnMember" runat="server" Text="Member Page" OnClick="btnMember_Click" />
+                <asp:Button ID="btnStaff" runat="server" Text="Staff Page" OnClick="btnStaff_Click" />
             </div>
         </div>
     </form>
