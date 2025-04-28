@@ -3,8 +3,10 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Security;
+
 using System.Web.UI;
 using System.Xml;
+
 
 namespace WeatherTravelPlanning
 {
@@ -12,6 +14,7 @@ namespace WeatherTravelPlanning
     {
         protected void btnLogin_Click(object sender, EventArgs e)
         {
+
             string email = txtUsername.Text.Trim();
             string password = txtPassword.Text;
             string hashedPassword = GetSHA256Hash(password);
@@ -26,9 +29,40 @@ namespace WeatherTravelPlanning
                 nodeName = "Member";
                 role = "Member";
                 redirectPage = "Members.aspx";
+
+            }
+            else if (File.Exists(filePath))
+            {
+                // Normal Member login check
+                XDocument doc = XDocument.Load(filePath);
+                bool validUser = false;
+
+                foreach (var member in doc.Descendants("Member"))
+                {
+                    if (member.Element("Username").Value == username &&
+                        member.Element("Password").Value == hashedInputPassword)
+                    {
+                        validUser = true;
+                        break;
+                    }
+                }
+
+                if (validUser)
+                {
+                    FormsAuthentication.SetAuthCookie(username, false);
+                    Session["Username"] = username;
+                    Session["UserType"] = "Member"; // normal user
+                    string redirectUrl = Request.QueryString["ReturnUrl"] ?? "Default.aspx";
+                    Response.Redirect(redirectUrl);
+                }
+                else
+                {
+                    lblMessage.Text = "Invalid username or password.";
+                }
             }
             else
             {
+
                 xmlPath = Server.MapPath("~/staff.xml");
                 nodeName = "StaffMember";
                 role = "Staff";
@@ -79,7 +113,14 @@ namespace WeatherTravelPlanning
                     builder.Append(b.ToString("x2"));
                 }
                 return builder.ToString();
+
             }
         }
+
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Member.aspx");
+        }
+
     }
 }

@@ -94,8 +94,10 @@
     <Content Include="Staff.aspx" />
     <Content Include="staff.xml" />
     <Content Include="Controls\WeatherDisplay.ascx" />
+    <Content Include="Controls\CaptchaControl.ascx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
+    <Content Include="Member.aspx" />
     <Content Include="Web.config" />
     <Content Include="Default.aspx" />
   </ItemGroup>
@@ -122,6 +124,13 @@
     <Compile Include="Controls\WeatherDisplay.ascx.designer.cs">
       <DependentUpon>WeatherDisplay.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CaptchaControl.ascx.cs">
+      <DependentUpon>CaptchaControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\CaptchaControl.ascx.designer.cs">
+      <DependentUpon>CaptchaControl.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -131,6 +140,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Member.aspx.cs">
+      <DependentUpon>Member.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Member.aspx.designer.cs">
+      <DependentUpon>Member.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Default.aspx.cs">
@@ -196,6 +212,12 @@
     <WCFMetadataStorage Include="Connected Services\RainyDayServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\TemperatureServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\WeatherServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SecurityLibrary\SecurityLibrary.csproj">
+      <Project>{e6e0ac0d-15dd-4fc3-8012-a1e9f8bc9b1d}</Project>
+      <Name>SecurityLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
