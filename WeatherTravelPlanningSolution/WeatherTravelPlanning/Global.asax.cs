@@ -3,7 +3,7 @@ using System.Web;
 
 namespace WeatherTravelPlanning
 {
-    public class Global : HttpApplication
+    public class Global : System.Web.HttpApplication
     {
 
         protected void Application_Start(object sender, EventArgs e)

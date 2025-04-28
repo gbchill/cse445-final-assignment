@@ -18,6 +18,7 @@
             <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" />
             <br /><br />
             <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" />
+            <asp:LinkButton ID="btnRegister" runat="server" OnClick="btnRegister_Click">Register as New Member</asp:LinkButton>
         </div>
     </form>
 </body>
