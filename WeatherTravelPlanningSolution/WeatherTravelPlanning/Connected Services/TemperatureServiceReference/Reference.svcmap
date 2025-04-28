@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="62123a3a-624a-4ab4-b429-fe33da377ea0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="e5db5769-8057-4204-a04d-a675c1ff1a30" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,14 +19,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="https://localhost:44391/TemperatureConverter.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://webstrar50.fulton.asu.edu/page1/TemperatureConverter.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="TemperatureConverter.xsd" MetadataType="Schema" ID="d9c9e3ea-e9df-4f67-9eb0-eb0798171d97" SourceId="1" SourceUrl="https://localhost:44391/TemperatureConverter.svc?xsd=xsd2" />
-    <MetadataFile FileName="TemperatureConverter.wsdl" MetadataType="Wsdl" ID="d3d2a0f5-78f1-4ec8-ba4b-616d5ef1d128" SourceId="1" SourceUrl="https://localhost:44391/TemperatureConverter.svc?wsdl" />
-    <MetadataFile FileName="TemperatureConverter1.xsd" MetadataType="Schema" ID="0e1a1db0-7bf3-4155-8bcb-76fcebdc9d8b" SourceId="1" SourceUrl="https://localhost:44391/TemperatureConverter.svc?xsd=xsd1" />
-    <MetadataFile FileName="TemperatureConverter2.xsd" MetadataType="Schema" ID="75443f38-4d36-47a1-9a8e-04d5465fa16b" SourceId="1" SourceUrl="https://localhost:44391/TemperatureConverter.svc?xsd=xsd0" />
-    <MetadataFile FileName="TemperatureConverter.disco" MetadataType="Disco" ID="57ff35cd-568b-4a85-bbca-ce5757db7eda" SourceId="1" SourceUrl="https://localhost:44391/TemperatureConverter.svc?disco" />
+    <MetadataFile FileName="TemperatureConverter.wsdl" MetadataType="Wsdl" ID="f6d13db9-631e-4b64-9662-2620519d96b6" SourceId="1" SourceUrl="http://webstrar50.fulton.asu.edu/page1/TemperatureConverter.svc?wsdl" />
+    <MetadataFile FileName="TemperatureConverter.xsd" MetadataType="Schema" ID="1cc147dc-961a-4f3a-8f67-2bd9f31583c2" SourceId="1" SourceUrl="http://webstrar50.fulton.asu.edu/Page1/TemperatureConverter.svc?xsd=xsd0" />
+    <MetadataFile FileName="TemperatureConverter1.xsd" MetadataType="Schema" ID="25ab8d05-9f2e-4476-91d3-e92afd6c5d12" SourceId="1" SourceUrl="http://webstrar50.fulton.asu.edu/Page1/TemperatureConverter.svc?xsd=xsd1" />
+    <MetadataFile FileName="TemperatureConverter2.xsd" MetadataType="Schema" ID="4b236eaf-2f52-4c6c-94ba-759cfec8d8be" SourceId="1" SourceUrl="http://webstrar50.fulton.asu.edu/Page1/TemperatureConverter.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Staff>
+	<StaffMember>
+		<Name>TA George</Name>
+		<Email>TA</Email>
+		<Password>d85b22f0890f5e82d76967037156f2a0bf779bcd44123bd5a2fa7ab299a289d6</Password>
+		<City>Phoenix, AZ</City>
+	</StaffMember>
+</Staff>
